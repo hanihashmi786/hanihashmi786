@@ -19,26 +19,6 @@ THEMES = {
 }
 
 PROJECTS = [
-    dict(slug="motorek", kicker="BACKEND · DJANGO", status="PRIVATE · PRODUCTION",
-         title="Motorek",
-         desc="Backend for an on-demand oil-change service: bookings and scheduling, payments, rider dispatch, inventory and notifications.",
-         metrics=[("10", "Django apps"), ("75", "test modules"), ("JWT+OTP", "auth")],
-         chips=["Django", "DRF", "Redis", "SimpleJWT", "django-otp"]),
-    dict(slug="awn-care", kicker="FULL-STACK · TYPESCRIPT", status="PRIVATE · PRODUCTION",
-         title="Awn Care",
-         desc="Hospital companion booking: an Expo mobile app and admin panel on a typed tRPC API over PostgreSQL, with an outbox for reliable events.",
-         metrics=[("22", "API routers"), ("32", "DB migrations"), ("E2E", "tested")],
-         chips=["Expo Router", "tRPC", "Drizzle", "PostgreSQL", "Zod"]),
-    dict(slug="zatca", kicker="DESKTOP · COMPLIANCE", status="PRIVATE · PRODUCTION",
-         title="ZATCA E-Invoicing",
-         desc="Saudi ZATCA Phase 2 e-invoicing on one Windows PC with no server. Onboarding runs against the live sandbox: CSR, then a compliance CSID, then a production CSID.",
-         metrics=[("Phase 2", "compliant"), ("0", "servers"), ("Unit+E2E", "tests")],
-         chips=["Electron", "React", "TypeScript", "SQLite", "Vitest"]),
-    dict(slug="perfect-house", kicker="MOBILE · EXPO", status="LIVE",
-         title="The Perfect House",
-         desc="Bilingual app for a Riyadh architecture and interior design firm: portfolio galleries, services and furniture supply, with full Arabic RTL.",
-         metrics=[("EN/AR", "with RTL"), ("iOS+Android", "and web"), ("2", "themes")],
-         chips=["Expo", "React Native", "TypeScript"]),
     dict(slug="taskio", kicker="FULL-STACK · PYTHON", status="OPEN SOURCE",
          title="Taskio",
          desc="Kanban workspace on a Django REST API: boards, cards, checklists, attachments, member roles and notifications, with a React 19 client.",
@@ -137,9 +117,30 @@ def card(p, c):
 '''
 
 
+def adaptive(p):
+    """One SVG that follows the viewer's colour scheme by itself.
+
+    GitHub wraps every README image in its own link, which breaks
+    <a><picture>…</picture></a>, so the cards can't use <picture> and still
+    link to their repos. Instead the card is drawn in the light palette and a
+    media query repaints it: each light colour is remapped to its dark
+    counterpart through attribute selectors, which beat presentation attributes.
+    """
+    light, dark = THEMES["light"], THEMES["dark"]
+    rules = []
+    for key, lc in light.items():
+        dc = dark[key]
+        rules.append(f'[fill="{lc}"]{{fill:{dc}}} [stroke="{lc}"]{{stroke:{dc}}}')
+    style = ("<style>@media (prefers-color-scheme: dark) { " + " ".join(rules) + " }</style>")
+    svg = card(p, light)
+    return svg.replace("<title", style + "\n  <title", 1)
+
+
 if __name__ == "__main__":
+    assert len(set(THEMES["light"].values())) == len(THEMES["light"]), "light colours must be unique"
     OUT.mkdir(parents=True, exist_ok=True)
+    for old in OUT.glob("*.svg"):
+        old.unlink()
     for p in PROJECTS:
-        for name, c in THEMES.items():
-            (OUT / f'{p["slug"]}-{name}.svg').write_text(card(p, c), encoding="utf-8")
-    print(f"wrote {len(PROJECTS) * len(THEMES)} cards to {OUT}")
+        (OUT / f'{p["slug"]}.svg').write_text(adaptive(p), encoding="utf-8")
+    print(f"wrote {len(PROJECTS)} adaptive cards to {OUT}")

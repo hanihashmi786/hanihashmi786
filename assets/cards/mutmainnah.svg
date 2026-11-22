@@ -1,4 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="620" height="300" viewBox="0 0 620 300" role="img" aria-labelledby="t d">
+  <style>@media (prefers-color-scheme: dark) { [fill="#FFFFFF"]{fill:#0B1220} [stroke="#FFFFFF"]{stroke:#0B1220} [fill="#F4F7FB"]{fill:#111A2E} [stroke="#F4F7FB"]{stroke:#111A2E} [fill="#DCE3EC"]{fill:#22304A} [stroke="#DCE3EC"]{stroke:#22304A} [fill="#0F172A"]{fill:#E6EDF7} [stroke="#0F172A"]{stroke:#E6EDF7} [fill="#516079"]{fill:#8B9BB4} [stroke="#516079"]{stroke:#8B9BB4} [fill="#0F766E"]{fill:#2DD4BF} [stroke="#0F766E"]{stroke:#2DD4BF} [fill="#B45309"]{fill:#F5B544} [stroke="#B45309"]{stroke:#F5B544} [fill="#EEF2F7"]{fill:#16223A} [stroke="#EEF2F7"]{stroke:#16223A} }</style>
   <title id="t">Mutma&#x27;innah Feed</title>
   <desc id="d">Automation · Ci/Cd. Arabic and Urdu text files go through a tested parser into a JSON feed. CI blocks bad content before it deploys to GitHub Pages. 466 line parser, 217 lines of tests, Auto deploy.</desc>
   <rect x=".75" y=".75" width="618.5" height="298.5" rx="16" fill="#FFFFFF" stroke="#DCE3EC" stroke-width="1.5"/>

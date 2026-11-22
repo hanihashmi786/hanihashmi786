@@ -12,7 +12,7 @@
 
 ### 👨‍💻 About me
 
-I build **backend-heavy products end to end**: Django and tRPC APIs with dozens of tests, the PostgreSQL schemas under them, and the React Native apps on top. My recent work includes an on-demand service platform with **75 backend test modules**, a hospital-companion booking system, and **Saudi ZATCA Phase 2** e-invoicing. My final-year project trained **four deep-learning models** for brain-MRI classification, and I'm now taking that AI background into **agentic systems** in Python.
+I build **backend-heavy products end to end**: Django and Flask APIs, the PostgreSQL schemas under them, and the React and React Native apps on top. My final-year project trained **four deep-learning models** that classify brain MRI scans, and I'm now taking that AI background into **agentic systems** in Python.
 
 - 🏗️ **Backend:** Django / DRF, Flask, tRPC, auth (JWT, OTP), payments, dispatch, background events
 - 📱 **Mobile and web:** React Native / Expo, React, Next.js, Electron, bilingual EN/AR with RTL
@@ -21,28 +21,15 @@ I build **backend-heavy products end to end**: Django and tRPC APIs with dozens 
 
 <br>
 
-## 🚀 Production work
+## 🚀 Featured projects
 
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/cards/motorek-dark.svg"><img alt="Motorek. Django backend for an on-demand oil-change service: bookings, payments, rider dispatch, inventory, notifications. 10 Django apps, 75 test modules, JWT and OTP auth." src="./assets/cards/motorek-light.svg" width="49%"></picture>
-  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/cards/awn-care-dark.svg"><img alt="Awn Care. Hospital companion booking: Expo app and admin panel on a tRPC API over PostgreSQL. 22 API routers, 32 database migrations, end-to-end tests." src="./assets/cards/awn-care-light.svg" width="49%"></picture>
+  <a href="https://github.com/hanihashmi786/Taskio"><img alt="Taskio. Kanban workspace on a Django REST API with a React 19 client. 10 data models, 22 API endpoints, JWT auth." src="./assets/cards/taskio.svg" width="49%"></a>
+  <a href="https://github.com/hanihashmi786/Brain-Tumor-Detection"><img alt="Brain Tumor Detection. CNN, VGG16, InceptionV3 and ResNet classifying brain MRI into four classes; 99.1% validation accuracy." src="./assets/cards/brain-tumor.svg" width="49%"></a>
 </p>
 <p align="center">
-  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/cards/zatca-dark.svg"><img alt="ZATCA E-Invoicing. Saudi ZATCA Phase 2 e-invoicing desktop app with Electron, React and SQLite, with no server. Unit and end-to-end tests." src="./assets/cards/zatca-light.svg" width="49%"></picture>
-  <a href="https://the-perfect-house.vercel.app"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/cards/perfect-house-dark.svg"><img alt="The Perfect House. Live bilingual Expo app for a Riyadh architecture and interior design firm, with Arabic RTL and light and dark themes." src="./assets/cards/perfect-house-light.svg" width="49%"></picture></a>
-</p>
-
-<p align="center"><sub>These are client and product codebases kept in private repositories. Ask me for a walkthrough.</sub></p>
-
-## 🧪 Open source
-
-<p align="center">
-  <a href="https://github.com/hanihashmi786/Taskio"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/cards/taskio-dark.svg"><img alt="Taskio. Kanban workspace on a Django REST API with a React 19 client. 10 data models, 22 API endpoints, JWT auth." src="./assets/cards/taskio-light.svg" width="49%"></picture></a>
-  <a href="https://github.com/hanihashmi786/Brain-Tumor-Detection"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/cards/brain-tumor-dark.svg"><img alt="Brain Tumor Detection. CNN, VGG16, InceptionV3 and ResNet classifying brain MRI into four classes; 99.1% validation accuracy." src="./assets/cards/brain-tumor-light.svg" width="49%"></picture></a>
-</p>
-<p align="center">
-  <a href="https://github.com/hanihashmi786/mutmainnah-content"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/cards/mutmainnah-dark.svg"><img alt="Mutma'innah Feed. A tested parser turns Arabic and Urdu text into a JSON feed, deployed by GitHub Actions to GitHub Pages." src="./assets/cards/mutmainnah-light.svg" width="49%"></picture></a>
-  <a href="https://github.com/hanihashmi786/VoiceDrop"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/cards/voicedrop-dark.svg"><img alt="VoiceDrop. Flask and PostgreSQL call-center QA app with three roles and 18 routes." src="./assets/cards/voicedrop-light.svg" width="49%"></picture></a>
+  <a href="https://github.com/hanihashmi786/mutmainnah-content"><img alt="Mutma'innah Feed. A tested parser turns Arabic and Urdu text into a JSON feed, deployed by GitHub Actions to GitHub Pages." src="./assets/cards/mutmainnah.svg" width="49%"></a>
+  <a href="https://github.com/hanihashmi786/VoiceDrop"><img alt="VoiceDrop. Flask and PostgreSQL call-center QA app with three roles and 18 routes." src="./assets/cards/voicedrop.svg" width="49%"></a>
 </p>
 
 <br>
