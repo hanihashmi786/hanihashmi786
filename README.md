@@ -17,9 +17,9 @@ I build **backend-heavy products end to end**: Django and Flask APIs, the Postgr
 
 <br>
 
-## 🧰 Skills & Technologies
+## 🧰 Tech stack
 
-<img alt="Tech stack: Python, JavaScript, TypeScript, React, React Native, Next.js, HTML, CSS, Tailwind CSS, Angular, Flask, Django, Node.js, Express, PostgreSQL, MySQL, MongoDB, Firebase. Tools: Git, GitHub, AWS, Docker, VS Code, NPM, Selenium, TensorFlow." src="./assets/skills.svg" width="100%">
+<img alt="Tech stack. Backend: Python, Django, Django REST, Flask, Node.js, Express, tRPC. AI/ML: TensorFlow, Keras, NumPy, Jupyter. Databases: PostgreSQL, MySQL, MongoDB, Redis, SQLite, Firebase, Drizzle. Frontend: TypeScript, JavaScript, React, Next.js, Angular, Tailwind CSS, Redux, HTML, CSS. Mobile and desktop: React Native, Expo, Electron. DevOps and tools: Git, GitHub, GitHub Actions, Docker, AWS, Vercel, Nginx, Gunicorn, Linux, VS Code, NPM, Selenium." src="./assets/stack.svg" width="100%">
 
 <br>
 
