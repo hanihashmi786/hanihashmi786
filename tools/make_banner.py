@@ -76,8 +76,6 @@ def font_face(family, weight, text):
     key = re.sub(r"\W", "", family) + f"-{weight}-" + hashlib.sha1(chars.encode()).hexdigest()[:8]
     cached = FONT_CACHE / f"{key}.woff2"
     if not cached.exists():
-        for old in FONT_CACHE.glob(re.sub(r"\W", "", family) + f"-{weight}-*.woff2"):
-            old.unlink()
         q = urllib.parse.urlencode({"family": f"{family}:wght@{weight}", "text": chars})
         req = urllib.request.Request(f"https://fonts.googleapis.com/css2?{q}",
                                      headers={"User-Agent": "Mozilla/5.0 Chrome/120"})

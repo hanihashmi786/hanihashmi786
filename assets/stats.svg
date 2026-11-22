@@ -8,7 +8,7 @@
   <text x="84" y="27" font-family="JetBrains Mono" font-size="14" fill="#9CA3AF">~/github/stats</text>
   <line x1="426.6666666666667" y1="90" x2="426.6666666666667" y2="260" stroke="#383838"/>
   <line x1="853.3333333333334" y1="90" x2="853.3333333333334" y2="260" stroke="#383838"/>
-  <text x="213.33333333333334" y="158" text-anchor="middle" font-family="Poppins" font-weight="700" font-size="54" fill="#FFFFFF">3,155</text>
+  <text x="213.33333333333334" y="158" text-anchor="middle" font-family="Poppins" font-weight="700" font-size="54" fill="#FFFFFF">3,156</text>
   <text x="213.33333333333334" y="236" text-anchor="middle" font-family="Poppins" font-weight="600" font-size="20" fill="#FFFFFF">Total Contributions</text>
   <text x="213.33333333333334" y="264" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="#7A7F88">Mar 13, 2024 – Present</text>
   <circle cx="640.0" cy="142" r="56" fill="none" stroke="#383838" stroke-width="6"/>
@@ -20,6 +20,6 @@
   <text x="1066.6666666666667" y="158" text-anchor="middle" font-family="Poppins" font-weight="700" font-size="54" fill="#FFFFFF">33</text>
   <text x="1066.6666666666667" y="236" text-anchor="middle" font-family="Poppins" font-weight="600" font-size="20" fill="#FFFFFF">Longest Streak</text>
   <text x="1066.6666666666667" y="264" text-anchor="middle" font-family="JetBrains Mono" font-size="14" fill="#7A7F88">Dec 29, 2025 – Jan 30, 2026</text>
-  <text x="1260" y="27" text-anchor="end" font-family="JetBrains Mono" font-size="12" fill="#7A7F88">2,297 in the last year · updated 2026-11-22</text>
+  <text x="1260" y="27" text-anchor="end" font-family="JetBrains Mono" font-size="12" fill="#7A7F88">2,298 in the last year · updated 2026-11-22</text>
   <rect x=".6" y=".6" width="1278.8" height="298.8" rx="15.4" fill="none" stroke="#383838" stroke-width="1.2"/>
 </svg>
