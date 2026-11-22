@@ -11,7 +11,7 @@
       <stop offset="1" stop-color="#0B1220" stop-opacity="0"/>
     </linearGradient>
     <style>
-      @keyframes rot { 0% {opacity:1} 23.00% {opacity:1} 25.00% {opacity:0} 98% {opacity:0} 100% {opacity:1} }
+      @keyframes rot { 0% {opacity:0} 1.5% {opacity:1} 22.50% {opacity:1} 24.00% {opacity:0} 100% {opacity:0} }
       .ln { opacity:0; animation: rot 14.0s linear infinite; } .l0 { opacity:1; }
       .l0 { animation-delay: 0.00s; }
       .l1 { animation-delay: -10.50s; }
@@ -40,7 +40,7 @@
   <g>
     <text class="ln l0" x="106" y="263" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="20" fill="#E6EDF7">django-rest api  ·  jwt auth, boards, cards, attachments</text>
     <text class="ln l1" x="106" y="263" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="20" fill="#E6EDF7">keras transfer learning  ·  4 cnn models on brain mri</text>
-    <text class="ln l2" x="106" y="263" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="20" fill="#E6EDF7">react native  ·  webrtc voice calling over sip</text>
+    <text class="ln l2" x="106" y="263" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="20" fill="#E6EDF7">react native + expo  ·  bilingual en/ar apps with rtl</text>
     <text class="ln l3" x="106" y="263" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="20" fill="#E6EDF7">node + github actions  ·  tested content pipeline</text>
   </g>
 

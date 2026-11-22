@@ -20,7 +20,7 @@ THEMES = {
 LINES = [
     "django-rest api  ·  jwt auth, boards, cards, attachments",
     "keras transfer learning  ·  4 cnn models on brain mri",
-    "react native  ·  webrtc voice calling over sip",
+    "react native + expo  ·  bilingual en/ar apps with rtl",
     "node + github actions  ·  tested content pipeline",
 ]
 
@@ -68,11 +68,11 @@ def css(c):
     n = len(LINES)
     slot = 100 / n
     rules = [
-        # Line i is visible for its slot; it fades out exactly while the next
-        # one fades in, so the box is never empty. Negative delays start every
-        # line mid-cycle, and .l0 stays visible if animations never run.
-        f"@keyframes rot {{ 0% {{opacity:1}} {slot-2:.2f}% {{opacity:1}} {slot:.2f}% {{opacity:0}} "
-        f"98% {{opacity:0}} 100% {{opacity:1}} }}",
+        # Line i owns its slot: quick fade in, hold, fade out before the slot
+        # ends, so two lines are never on screen together. Negative delays
+        # start every line mid-cycle; .l0 stays visible if animations never run.
+        f"@keyframes rot {{ 0% {{opacity:0}} 1.5% {{opacity:1}} {slot-2.5:.2f}% {{opacity:1}} "
+        f"{slot-1:.2f}% {{opacity:0}} 100% {{opacity:0}} }}",
         ".ln { opacity:0; animation: rot %.1fs linear infinite; } .l0 { opacity:1; }" % CYCLE,
     ]
     for i in range(n):
