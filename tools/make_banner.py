@@ -1,137 +1,238 @@
-"""Generate the light and dark profile banners from one template.
+"""Generate the profile banner in the visual language of hanihashmi.vercel.app.
 
-    python tools/make_banner.py   (run from the repo root)
+    python tools/make_banner.py            (run from the repo root)
 
-Writes assets/banner-dark.svg and banner-light.svg.
-Edit THEMES or LINES here, never the SVGs by hand, so the two stay in sync.
+Dracula palette, Poppins + JetBrains Mono, a `hani.ts` editor window and a
+VS Code-style status bar: the same identity as the portfolio.
+
+Images in a GitHub README can't load web fonts, so the two fonts are embedded
+as base64 subsets that hold only the glyphs this banner uses. Google Fonts
+builds those subsets (`&text=`). They are cached in tools/fonts/ after the
+first run, so later runs work offline.
+
+The typing animation uses SMIL (<animate>) because it runs inside <img> in
+every major browser. Without animation the first line stays visible.
 """
+import base64
+import hashlib
+import re
+import urllib.parse
+import urllib.request
+from html import escape
 from pathlib import Path
 
-OUT = Path(__file__).resolve().parent.parent / "assets"
+ROOT = Path(__file__).resolve().parent.parent
+OUT = ROOT / "assets" / "banner.svg"
+FONT_CACHE = Path(__file__).resolve().parent / "fonts"
 
-THEMES = {
-    "dark": dict(bg="#0B1220", panel="#111A2E", rule="#1E293B", grid="#1A2438",
-                 text="#E6EDF7", muted="#8B9BB4", accent="#2DD4BF", warm="#F5B544"),
-    "light": dict(bg="#F7F9FC", panel="#FFFFFF", rule="#DCE3EC", grid="#E6ECF3",
-                  text="#0F172A", muted="#516079", accent="#0F766E", warm="#B45309"),
-}
+# Dracula, as used on the portfolio
+BG, PANEL, LINE, CURRENT = "#282A36", "#1E1F29", "#343746", "#44475A"
+FG, MUTED, COMMENT = "#F8F8F2", "#A3A8C3", "#6272A4"
+PURPLE, PINK, CYAN, GREEN, YELLOW, ORANGE, RED = (
+    "#BD93F9", "#FF79C6", "#8BE9FD", "#50FA7B", "#F1FA8C", "#FFB86C", "#FF5555")
 
-# Rotating terminal lines. Each one is a real thing in the public repos.
-LINES = [
-    "django-rest api  ·  jwt auth, boards, cards, attachments",
-    "keras transfer learning  ·  4 cnn models on brain mri",
-    "react native + expo  ·  bilingual en/ar apps with rtl",
-    "node + github actions  ·  tested content pipeline",
+W, H = 1280, 440
+MONO_ADV = 0.6  # JetBrains Mono advance width, in em
+
+# What the typing line cycles through. Keep each one true.
+TYPED = [
+    "Product Developer",
+    "Python · Django · REST APIs",
+    "React Native · EN/AR with RTL",
+    "Deep learning → agentic AI",
+]
+TAGLINE = ("Python at the core. ", ("AI", PURPLE), " at the edge. ", ("Products that ship.", FG))
+
+# hani.ts, as (text, colour) tokens per line
+K, S, P, C, N, T = PINK, YELLOW, CYAN, COMMENT, FG, ORANGE
+CODE = [
+    [("const ", K), ("hani", N), (" = {", N)],
+    [("  role", P), (": ", N), ("'Product Developer'", S), (",", N)],
+    [("  base", P), (": ", N), ("'Riyadh, Saudi Arabia'", S), (",", N)],
+    [("  stack", P), (": [", N), ("'Python'", S), (", ", N), ("'Django'", S), (",", N)],
+    [("          ", N), ("'React Native'", S), (", ", N), ("'Next.js'", S), ("],", N)],
+    [("  ai", P), (": [", N), ("'TensorFlow'", S), (", ", N), ("'LLM agents'", S), ("],", N)],
+    [("  i18n", P), (": [", N), ("'en'", S), (", ", N), ("'ar'", S), ("], ", N), ("// RTL ready", C)],
+    [("  shipping", P), (": ", N), ("true", T), (",", N)],
+    [("};", N)],
+    [],
+    [("export default ", K), ("hani", N), (";", N)],
 ]
 
-SANS = "-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif"
-MONO = "ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace"
-
-W, H = 1280, 340
-CYCLE = 3.5 * len(LINES)  # seconds for a full rotation
-
-
-def graph(c):
-    """A small agent/tool graph on the right: one orchestrator, four tools."""
-    hub = (1040, 170)
-    nodes = [(930, 92), (1160, 96), (920, 252), (1166, 246)]
-    labels = ["api", "db", "model", "tools"]
-    parts = []
-    for i, (x, y) in enumerate(nodes):
-        d = f"M{hub[0]},{hub[1]} L{x},{y}"
-        parts.append(f'<path d="{d}" stroke="{c["rule"]}" stroke-width="2" fill="none"/>')
-        parts.append(f'<path class="flow f{i}" d="{d}" stroke="{c["accent"]}" stroke-width="2" '
-                     f'fill="none" stroke-dasharray="10 220" stroke-linecap="round"/>')
-    for (x, y), lab in zip(nodes, labels):
-        parts.append(f'<rect x="{x-38}" y="{y-17}" width="76" height="34" rx="8" '
-                     f'fill="{c["panel"]}" stroke="{c["rule"]}" stroke-width="1.5"/>')
-        parts.append(f'<text x="{x}" y="{y+5}" text-anchor="middle" font-family="{MONO}" '
-                     f'font-size="14" fill="{c["muted"]}">{lab}</text>')
-    parts.append(f'<circle cx="{hub[0]}" cy="{hub[1]}" r="30" fill="{c["panel"]}" '
-                 f'stroke="{c["accent"]}" stroke-width="2"/>')
-    parts.append(f'<circle class="pulse" cx="{hub[0]}" cy="{hub[1]}" r="30" fill="none" '
-                 f'stroke="{c["accent"]}" stroke-width="2"/>')
-    parts.append(f'<text x="{hub[0]}" y="{hub[1]+6}" text-anchor="middle" font-family="{MONO}" '
-                 f'font-size="16" font-weight="600" fill="{c["accent"]}">py</text>')
-    return "\n    ".join(parts)
+MONO_TEXTS = (["// Hello World, I'm", "> ", "hani.ts", "haniHashmi();", "~/github",
+               "main", "open to work", "Riyadh, Saudi Arabia", "UTF-8", "EN", "TypeScript",
+               "$ whoami", "0123456789"] + TYPED
+              + ["".join(t for t, _ in line) for line in CODE])
+SANS_TEXTS = ["Hani Hashmi"] + [t if isinstance(t, str) else t[0] for t in TAGLINE]
 
 
-def lines(c):
-    out = []
-    for i, text in enumerate(LINES):
-        out.append(f'<text class="ln l{i}" x="106" y="263" font-family="{MONO}" font-size="20" '
-                   f'fill="{c["text"]}">{text}</text>')
-    return "\n    ".join(out)
+def font_face(family, weight, text):
+    """Return a base64 woff2 subset of `family` covering `text`, cached on disk."""
+    FONT_CACHE.mkdir(exist_ok=True)
+    chars = "".join(sorted(set(text)))
+    key = re.sub(r"\W", "", family) + f"-{weight}-" + hashlib.sha1(chars.encode()).hexdigest()[:8]
+    cached = FONT_CACHE / f"{key}.woff2"
+    if not cached.exists():
+        for old in FONT_CACHE.glob(re.sub(r"\W", "", family) + f"-{weight}-*.woff2"):
+            old.unlink()
+        q = urllib.parse.urlencode({"family": f"{family}:wght@{weight}", "text": chars})
+        req = urllib.request.Request(f"https://fonts.googleapis.com/css2?{q}",
+                                     headers={"User-Agent": "Mozilla/5.0 Chrome/120"})
+        css = urllib.request.urlopen(req, timeout=30).read().decode()
+        url = re.search(r"url\((https://[^)]+)\)", css).group(1)
+        cached.write_bytes(urllib.request.urlopen(url, timeout=30).read())
+    data = base64.b64encode(cached.read_bytes()).decode()
+    return (f"@font-face{{font-family:'{family}';font-weight:{weight};"
+            f"src:url(data:font/woff2;base64,{data}) format('woff2');}}")
 
 
-def css(c):
-    n = len(LINES)
-    slot = 100 / n
-    rules = [
-        # Line i owns its slot: quick fade in, hold, fade out before the slot
-        # ends, so two lines are never on screen together. Negative delays
-        # start every line mid-cycle; .l0 stays visible if animations never run.
-        f"@keyframes rot {{ 0% {{opacity:0}} 1.5% {{opacity:1}} {slot-2.5:.2f}% {{opacity:1}} "
-        f"{slot-1:.2f}% {{opacity:0}} 100% {{opacity:0}} }}",
-        ".ln { opacity:0; animation: rot %.1fs linear infinite; } .l0 { opacity:1; }" % CYCLE,
+def mono_w(text, size):
+    return len(text) * size * MONO_ADV
+
+
+def typing(x, y, size):
+    """Typewriter: each line types, holds, deletes; a block cursor follows."""
+    per, type_t, hold_t, del_t = 4.2, 1.3, 2.1, 0.5
+    total = per * len(TYPED)
+    out, cursor_vals, cursor_times = [], [], []
+    for i, text in enumerate(TYPED):
+        n = len(text)
+        frames = []  # (time, visible chars)
+        t0 = i * per
+        frames.append((0, 0))
+        for k in range(n + 1):
+            frames.append((t0 + type_t * k / n, k))
+        frames.append((t0 + type_t + hold_t, n))
+        for k in range(n - 1, -1, -1):
+            frames.append((t0 + type_t + hold_t + del_t * (n - k) / n, k))
+        frames = sorted({round(t, 3): c for t, c in frames}.items())
+        times = ";".join(f"{t / total:.4f}" for t, _ in frames)
+        widths = ";".join(f"{c * size * MONO_ADV:.1f}" for _, c in frames)
+        start_w = mono_w(text, size) if i == 0 else 0
+        out.append(
+            f'<clipPath id="tc{i}"><rect x="{x}" y="{y - size}" width="{start_w:.1f}" height="{size * 1.4}">'
+            f'<animate attributeName="width" dur="{total}s" repeatCount="indefinite" calcMode="discrete" '
+            f'keyTimes="{times}" values="{widths}"/></rect></clipPath>'
+            f'<text clip-path="url(#tc{i})" x="{x}" y="{y}" font-family="JetBrains Mono" font-size="{size}" '
+            f'fill="{FG}">{escape(text)}</text>')
+        for t, c in frames:
+            if t >= t0 or i == 0:
+                cursor_times.append(t)
+                cursor_vals.append(x + c * size * MONO_ADV + 2)
+    pairs = sorted(dict(zip(cursor_times, cursor_vals)).items())
+    if pairs[0][0] != 0:
+        pairs.insert(0, (0, x + 2))
+    ct = ";".join(f"{t / total:.4f}" for t, _ in pairs)
+    cv = ";".join(f"{v:.1f}" for _, v in pairs)
+    first_x = x + mono_w(TYPED[0], size) + 2
+    out.append(
+        f'<rect x="{first_x:.1f}" y="{y - size * 0.82:.1f}" width="{size * 0.55:.1f}" height="{size * 1.02:.1f}" fill="{PURPLE}">'
+        f'<animate attributeName="x" dur="{total}s" repeatCount="indefinite" calcMode="discrete" keyTimes="{ct}" values="{cv}"/>'
+        f'<animate attributeName="opacity" dur="1.05s" repeatCount="indefinite" calcMode="discrete" keyTimes="0;0.5" values="1;0"/>'
+        f'</rect>')
+    return "\n  ".join(out)
+
+
+def tagline(x, y, size):
+    spans = []
+    for part in TAGLINE:
+        if isinstance(part, str):
+            spans.append(escape(part))
+        else:
+            spans.append(f'<tspan fill="{part[1]}" font-weight="600">{escape(part[0])}</tspan>')
+    return (f'<text x="{x}" y="{y}" font-family="Poppins" font-size="{size}" fill="{MUTED}">'
+            + "".join(spans) + "</text>")
+
+
+def editor(x, y, w, h):
+    size, lh = 16, 24
+    out = [
+        f'<rect x="{x}" y="{y}" width="{w}" height="{h}" rx="14" fill="{PANEL}" stroke="{CURRENT}" stroke-width="1.2"/>',
+        f'<path d="M{x} {y + 14} a14 14 0 0 1 14 -14 h{w - 28} a14 14 0 0 1 14 14 v28 h-{w} z" fill="{BG}"/>',
+        f'<line x1="{x}" y1="{y + 42}" x2="{x + w}" y2="{y + 42}" stroke="{CURRENT}"/>',
     ]
-    for i in range(n):
-        rules.append(f".l{i} {{ animation-delay: {i * CYCLE / n - (CYCLE if i else 0):.2f}s; }}")
-    rules += [
-        "@keyframes flow { from { stroke-dashoffset: 230 } to { stroke-dashoffset: 0 } }",
-        ".flow { animation: flow 2.8s linear infinite; }",
-        ".f1 { animation-delay: .7s } .f2 { animation-delay: 1.4s } .f3 { animation-delay: 2.1s }",
-        "@keyframes pulse { 0% { r:30; opacity:.7 } 100% { r:52; opacity:0 } }",
-        ".pulse { animation: pulse 2.8s ease-out infinite; }",
-        # Motion off: show the first line, keep everything still.
-        "@media (prefers-reduced-motion: reduce) {"
-        " .ln,.flow,.pulse { animation:none } .l0 { opacity:1 } .flow,.pulse { opacity:0 } }",
-    ]
-    return "\n      ".join(rules)
+    for i, col in enumerate((RED, ORANGE, GREEN)):
+        out.append(f'<circle cx="{x + 22 + i * 18}" cy="{y + 21}" r="6" fill="{col}"/>')
+    out.append(f'<text x="{x + 88}" y="{y + 26}" font-family="JetBrains Mono" font-size="13" fill="{MUTED}">hani.ts</text>')
+    out.append(f'<text x="{x + w - 18}" y="{y + 26}" text-anchor="end" font-family="JetBrains Mono" font-size="12" fill="{COMMENT}">TypeScript</text>')
+    ty = y + 42 + 30
+    for n, line in enumerate(CODE, start=1):
+        out.append(f'<text x="{x + 34}" y="{ty}" text-anchor="end" font-family="JetBrains Mono" font-size="{size - 2}" fill="{COMMENT}">{n}</text>')
+        if line:
+            spans = "".join(f'<tspan fill="{c}">{escape(t)}</tspan>' for t, c in line)
+            out.append(f'<text x="{x + 50}" y="{ty}" font-family="JetBrains Mono" font-size="{size}" xml:space="preserve">{spans}</text>')
+        ty += lh
+    return "\n  ".join(out)
 
 
-def svg(name, c):
+def status_bar():
+    y = H - 30
+    return "\n  ".join([
+        f'<path d="M0 {y} H{W} V{H - 16} a16 16 0 0 1 -16 16 H16 a16 16 0 0 1 -16 -16 z" fill="{PANEL}"/>',
+        f'<line x1="0" y1="{y}" x2="{W}" y2="{y}" stroke="{CURRENT}"/>',
+        f'<text x="22" y="{y + 20}" font-family="JetBrains Mono" font-size="13" fill="{PURPLE}">⎇ main</text>',
+        f'<circle cx="104" cy="{y + 15}" r="4" fill="{GREEN}"><animate attributeName="opacity" dur="2.4s" repeatCount="indefinite" values="1;.35;1"/></circle>',
+        f'<text x="114" y="{y + 20}" font-family="JetBrains Mono" font-size="13" fill="{MUTED}">open to work</text>',
+        f'<text x="{W - 22}" y="{y + 20}" text-anchor="end" font-family="JetBrains Mono" font-size="13" fill="{COMMENT}" xml:space="preserve">Riyadh, Saudi Arabia   UTF-8   EN</text>',
+    ])
+
+
+def svg():
+    styles = "".join([
+        font_face("Poppins", 400, "".join(SANS_TEXTS)),
+        font_face("Poppins", 600, "".join(SANS_TEXTS)),
+        font_face("Poppins", 700, "Hani Hashmi"),
+        font_face("JetBrains Mono", 400, "".join(MONO_TEXTS) + "⎇"),
+        font_face("JetBrains Mono", 700, "haniHashmi();"),
+    ])
+    lx = 64
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-labelledby="t d">
   <title id="t">Hani Mustafa Hashmi — Software Engineer and Product Developer</title>
   <desc id="d">Software engineer and product developer in Riyadh. Python at the core, AI at the edge, products that ship.</desc>
   <defs>
-    <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
-      <circle cx="2" cy="2" r="1.2" fill="{c["grid"]}"/>
+    <style>{styles}</style>
+    <radialGradient id="glow" cx=".78" cy=".42" r=".55">
+      <stop offset="0" stop-color="{PURPLE}" stop-opacity=".16"/>
+      <stop offset="1" stop-color="{PURPLE}" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
+      <path d="M32 0H0V32" fill="none" stroke="{LINE}" stroke-width=".6"/>
     </pattern>
-    <linearGradient id="fade" x1="0" x2="1">
-      <stop offset="0" stop-color="{c["bg"]}" stop-opacity="1"/>
-      <stop offset=".55" stop-color="{c["bg"]}" stop-opacity=".85"/>
-      <stop offset="1" stop-color="{c["bg"]}" stop-opacity="0"/>
-    </linearGradient>
-    <style>
-      {css(c)}
-    </style>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="130%">
+      <feDropShadow dx="0" dy="14" stdDeviation="16" flood-color="#000" flood-opacity=".45"/>
+    </filter>
   </defs>
-  <rect width="{W}" height="{H}" rx="18" fill="{c["bg"]}"/>
-  <rect width="{W}" height="{H}" rx="18" fill="url(#dots)"/>
-  <rect width="900" height="{H}" rx="18" fill="url(#fade)"/>
-  <rect x="0.75" y="0.75" width="{W-1.5}" height="{H-1.5}" rx="17.5" fill="none" stroke="{c["rule"]}" stroke-width="1.5"/>
 
-  <rect x="72" y="66" width="4" height="96" rx="2" fill="{c["accent"]}"/>
-  <text x="96" y="96" font-family="{MONO}" font-size="17" letter-spacing="3" fill="{c["muted"]}">SOFTWARE ENGINEER  ·  PRODUCT DEVELOPER  ·  RIYADH</text>
-  <text x="94" y="152" font-family="{SANS}" font-size="54" font-weight="700" letter-spacing="-1" fill="{c["text"]}">Hani Mustafa Hashmi</text>
-  <text x="96" y="196" font-family="{SANS}" font-size="25" fill="{c["muted"]}">Python at the core. <tspan fill="{c["accent"]}" font-weight="600">AI</tspan> at the edge. <tspan fill="{c["text"]}" font-weight="600">Products that ship.</tspan></text>
+  <rect width="{W}" height="{H}" rx="16" fill="{BG}"/>
+  <rect width="{W}" height="{H}" rx="16" fill="url(#grid)" opacity=".55"/>
+  <rect width="{W}" height="{H}" rx="16" fill="url(#glow)"/>
 
-  <rect x="72" y="230" width="680" height="48" rx="10" fill="{c["panel"]}" stroke="{c["rule"]}" stroke-width="1.5"/>
-  <text x="88" y="263" font-family="{MONO}" font-size="20" fill="{c["warm"]}">›</text>
-  <g>
-    {lines(c)}
+  <text x="{lx - 2}" y="44" font-family="JetBrains Mono" font-weight="700" font-size="15" fill="{PURPLE}">haniHashmi();</text>
+  <text x="{lx + 128}" y="44" font-family="JetBrains Mono" font-size="13" fill="{COMMENT}">~/github</text>
+
+  <text x="{lx}" y="128" font-family="JetBrains Mono" font-size="18" fill="{PURPLE}">// Hello World, I'm</text>
+  <text x="{lx - 4}" y="214" font-family="Poppins" font-weight="700" font-size="88" letter-spacing="-2" fill="{FG}">Hani Hashmi</text>
+
+  <text x="{lx}" y="272" font-family="JetBrains Mono" font-size="26" fill="{PURPLE}">&gt;</text>
+  {typing(lx + 30, 272, 26)}
+
+  {tagline(lx, 326, 21)}
+
+  <circle cx="{lx + 7}" cy="{366}" r="6.5" fill="none" stroke="{COMMENT}" stroke-width="1.6"/>
+  <circle cx="{lx + 7}" cy="{366}" r="2" fill="{COMMENT}"/>
+  <text x="{lx + 22}" y="371" font-family="JetBrains Mono" font-size="15" fill="{MUTED}">Riyadh, Saudi Arabia</text>
+
+  <g filter="url(#shadow)">
+  {editor(752, 62, 468, 336)}
   </g>
 
-  <g>
-    {graph(c)}
-  </g>
+  {status_bar()}
+  <rect x=".6" y=".6" width="{W - 1.2}" height="{H - 1.2}" rx="15.4" fill="none" stroke="{CURRENT}" stroke-width="1.2"/>
 </svg>
 '''
 
 
 if __name__ == "__main__":
-    OUT.mkdir(parents=True, exist_ok=True)
-    for name, c in THEMES.items():
-        (OUT / f"banner-{name}.svg").write_text(svg(name, c), encoding="utf-8")
-        print("wrote", OUT / f"banner-{name}.svg")
+    OUT.parent.mkdir(parents=True, exist_ok=True)
+    OUT.write_text(svg(), encoding="utf-8")
+    print(f"wrote {OUT} ({OUT.stat().st_size // 1024} KB)")
