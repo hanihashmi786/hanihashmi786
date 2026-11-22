@@ -1,7 +1,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./assets/banner-dark.svg">
   <source media="(prefers-color-scheme: light)" srcset="./assets/banner-light.svg">
-  <img alt="Hani Mustafa Hashmi — Software Engineer in Riyadh. Python backends, mobile apps, and the AI that makes them useful." src="./assets/banner-light.svg" width="100%">
+  <img alt="Hani Mustafa Hashmi — Software Engineer and Product Developer in Riyadh. Python at the core. AI at the edge. Products that ship." src="./assets/banner-light.svg" width="100%">
 </picture>
 
 <p align="center">
@@ -17,7 +17,7 @@ I build **backend-heavy products end to end**: Django and Flask APIs, the Postgr
 - 🏗️ **Backend:** Django / DRF, Flask, tRPC, auth (JWT, OTP), payments, dispatch, background events
 - 📱 **Mobile and web:** React Native / Expo, React, Next.js, Electron, bilingual EN/AR with RTL
 - 🧠 **AI:** TensorFlow / Keras, CNNs and transfer learning; now working on LLM agents, tool calling and RAG
-- 🌍 Based in **Riyadh, Saudi Arabia**, building products for clients in KSA and Pakistan
+- 🏢 **Product Developer** at Abdulaziz Turki Al Otaishan Company in **Riyadh**, with freelance work alongside for clients in KSA and Pakistan
 
 <br>
 
@@ -61,7 +61,8 @@ I build **backend-heavy products end to end**: Django and Flask APIs, the Postgr
 ## 💼 Experience
 
 <table>
-  <tr><td width="170"><b>Freelance</b></td><td>Full-stack developer</td><td>Oct 2025 – present · Riyadh</td></tr>
+  <tr><td width="280"><b>Abdulaziz Turki Al Otaishan Company</b></td><td>Product Developer</td><td>Oct 2025 – present · Riyadh</td></tr>
+  <tr><td><b>Freelance</b> <sub>(alongside)</sub></td><td>Full-stack developer</td><td>Oct 2025 – present · Riyadh</td></tr>
   <tr><td><b>Mars BPO</b></td><td>Full-stack developer</td><td>Jul 2024 – Aug 2025 · Islamabad</td></tr>
   <tr><td><b>Focal Technologies</b></td><td>Full-stack developer</td><td>Sep 2023 – Jul 2024 · Islamabad</td></tr>
   <tr><td><b>SOFTOO</b></td><td>JavaScript developer intern</td><td>Jul 2023 – Sep 2023 · Islamabad</td></tr>

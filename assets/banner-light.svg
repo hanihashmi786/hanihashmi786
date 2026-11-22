@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1280" height="340" viewBox="0 0 1280 340" role="img" aria-labelledby="t d">
-  <title id="t">Hani Mustafa Hashmi — Software Engineer</title>
-  <desc id="d">Python and full-stack software engineer based in Riyadh, working on backend APIs, mobile apps and applied AI.</desc>
+  <title id="t">Hani Mustafa Hashmi — Software Engineer and Product Developer</title>
+  <desc id="d">Software engineer and product developer in Riyadh. Python at the core, AI at the edge, products that ship.</desc>
   <defs>
     <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="1.2" fill="#E6ECF3"/>
@@ -31,9 +31,9 @@
   <rect x="0.75" y="0.75" width="1278.5" height="338.5" rx="17.5" fill="none" stroke="#DCE3EC" stroke-width="1.5"/>
 
   <rect x="72" y="66" width="4" height="96" rx="2" fill="#0F766E"/>
-  <text x="96" y="96" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="17" letter-spacing="3" fill="#516079">SOFTWARE ENGINEER  ·  RIYADH, KSA</text>
+  <text x="96" y="96" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="17" letter-spacing="3" fill="#516079">SOFTWARE ENGINEER  ·  PRODUCT DEVELOPER  ·  RIYADH</text>
   <text x="94" y="152" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="54" font-weight="700" letter-spacing="-1" fill="#0F172A">Hani Mustafa Hashmi</text>
-  <text x="96" y="196" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="25" fill="#516079">Python backends, mobile apps, and the <tspan fill="#0F766E" font-weight="600">AI</tspan> that makes them useful.</text>
+  <text x="96" y="196" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif" font-size="25" fill="#516079">Python at the core. <tspan fill="#0F766E" font-weight="600">AI</tspan> at the edge. <tspan fill="#0F172A" font-weight="600">Products that ship.</tspan></text>
 
   <rect x="72" y="230" width="680" height="48" rx="10" fill="#FFFFFF" stroke="#DCE3EC" stroke-width="1.5"/>
   <text x="88" y="263" font-family="ui-monospace,SFMono-Regular,'SF Mono',Menlo,Consolas,'Liberation Mono',monospace" font-size="20" fill="#B45309">›</text>

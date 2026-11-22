@@ -92,8 +92,8 @@ def css(c):
 
 def svg(name, c):
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="{W}" height="{H}" viewBox="0 0 {W} {H}" role="img" aria-labelledby="t d">
-  <title id="t">Hani Mustafa Hashmi — Software Engineer</title>
-  <desc id="d">Python and full-stack software engineer based in Riyadh, working on backend APIs, mobile apps and applied AI.</desc>
+  <title id="t">Hani Mustafa Hashmi — Software Engineer and Product Developer</title>
+  <desc id="d">Software engineer and product developer in Riyadh. Python at the core, AI at the edge, products that ship.</desc>
   <defs>
     <pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse">
       <circle cx="2" cy="2" r="1.2" fill="{c["grid"]}"/>
@@ -113,9 +113,9 @@ def svg(name, c):
   <rect x="0.75" y="0.75" width="{W-1.5}" height="{H-1.5}" rx="17.5" fill="none" stroke="{c["rule"]}" stroke-width="1.5"/>
 
   <rect x="72" y="66" width="4" height="96" rx="2" fill="{c["accent"]}"/>
-  <text x="96" y="96" font-family="{MONO}" font-size="17" letter-spacing="3" fill="{c["muted"]}">SOFTWARE ENGINEER  ·  RIYADH, KSA</text>
+  <text x="96" y="96" font-family="{MONO}" font-size="17" letter-spacing="3" fill="{c["muted"]}">SOFTWARE ENGINEER  ·  PRODUCT DEVELOPER  ·  RIYADH</text>
   <text x="94" y="152" font-family="{SANS}" font-size="54" font-weight="700" letter-spacing="-1" fill="{c["text"]}">Hani Mustafa Hashmi</text>
-  <text x="96" y="196" font-family="{SANS}" font-size="25" fill="{c["muted"]}">Python backends, mobile apps, and the <tspan fill="{c["accent"]}" font-weight="600">AI</tspan> that makes them useful.</text>
+  <text x="96" y="196" font-family="{SANS}" font-size="25" fill="{c["muted"]}">Python at the core. <tspan fill="{c["accent"]}" font-weight="600">AI</tspan> at the edge. <tspan fill="{c["text"]}" font-weight="600">Products that ship.</tspan></text>
 
   <rect x="72" y="230" width="680" height="48" rx="10" fill="{c["panel"]}" stroke="{c["rule"]}" stroke-width="1.5"/>
   <text x="88" y="263" font-family="{MONO}" font-size="20" fill="{c["warm"]}">›</text>
