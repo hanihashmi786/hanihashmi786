@@ -5,73 +5,89 @@
 </picture>
 
 <p align="center">
-  <a href="https://hani-hashmi-portfolio.vercel.app/"><b>Portfolio</b></a>
-  &nbsp;·&nbsp;
-  <a href="https://linkedin.com/in/hanihashmi786"><b>LinkedIn</b></a>
-  &nbsp;·&nbsp;
-  Riyadh, Saudi Arabia
+  <a href="https://hani-hashmi-portfolio.vercel.app/"><img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-0F766E?style=for-the-badge&logo=vercel&logoColor=white"></a>
+  <a href="https://linkedin.com/in/hanihashmi786"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge"></a>
+  <img alt="Based in Riyadh, Saudi Arabia" src="https://img.shields.io/badge/Riyadh,%20KSA-1E293B?style=for-the-badge&logo=googlemaps&logoColor=white">
+</p>
+
+### 👨‍💻 About me
+
+I build **backend-heavy products end to end**: Django and tRPC APIs with dozens of tests, the PostgreSQL schemas under them, and the React Native apps on top. My recent work includes an on-demand service platform with **75 backend test modules**, a hospital-companion booking system, and **Saudi ZATCA Phase 2** e-invoicing. My final-year project trained **four deep-learning models** for brain-MRI classification, and I'm now taking that AI background into **agentic systems** in Python.
+
+- 🏗️ **Backend:** Django / DRF, Flask, tRPC, auth (JWT, OTP), payments, dispatch, background events
+- 📱 **Mobile and web:** React Native / Expo, React, Next.js, Electron, bilingual EN/AR with RTL
+- 🧠 **AI:** TensorFlow / Keras, CNNs and transfer learning; now working on LLM agents, tool calling and RAG
+- 🌍 Based in **Riyadh, Saudi Arabia**, building products for clients in KSA and Pakistan
+
+<br>
+
+## 🚀 Production work
+
+<p align="center">
+  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/cards/motorek-dark.svg"><img alt="Motorek. Django backend for an on-demand oil-change service: bookings, payments, rider dispatch, inventory, notifications. 10 Django apps, 75 test modules, JWT and OTP auth." src="./assets/cards/motorek-light.svg" width="49%"></picture>
+  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/cards/awn-care-dark.svg"><img alt="Awn Care. Hospital companion booking: Expo app and admin panel on a tRPC API over PostgreSQL. 22 API routers, 32 database migrations, end-to-end tests." src="./assets/cards/awn-care-light.svg" width="49%"></picture>
+</p>
+<p align="center">
+  <picture><source media="(prefers-color-scheme: dark)" srcset="./assets/cards/zatca-dark.svg"><img alt="ZATCA E-Invoicing. Saudi ZATCA Phase 2 e-invoicing desktop app with Electron, React and SQLite, with no server. Unit and end-to-end tests." src="./assets/cards/zatca-light.svg" width="49%"></picture>
+  <a href="https://the-perfect-house.vercel.app"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/cards/perfect-house-dark.svg"><img alt="The Perfect House. Live bilingual Expo app for a Riyadh architecture and interior design firm, with Arabic RTL and light and dark themes." src="./assets/cards/perfect-house-light.svg" width="49%"></picture></a>
+</p>
+
+<p align="center"><sub>These are client and product codebases kept in private repositories. Ask me for a walkthrough.</sub></p>
+
+## 🧪 Open source
+
+<p align="center">
+  <a href="https://github.com/hanihashmi786/Taskio"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/cards/taskio-dark.svg"><img alt="Taskio. Kanban workspace on a Django REST API with a React 19 client. 10 data models, 22 API endpoints, JWT auth." src="./assets/cards/taskio-light.svg" width="49%"></picture></a>
+  <a href="https://github.com/hanihashmi786/Brain-Tumor-Detection"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/cards/brain-tumor-dark.svg"><img alt="Brain Tumor Detection. CNN, VGG16, InceptionV3 and ResNet classifying brain MRI into four classes; 99.1% validation accuracy." src="./assets/cards/brain-tumor-light.svg" width="49%"></picture></a>
+</p>
+<p align="center">
+  <a href="https://github.com/hanihashmi786/mutmainnah-content"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/cards/mutmainnah-dark.svg"><img alt="Mutma'innah Feed. A tested parser turns Arabic and Urdu text into a JSON feed, deployed by GitHub Actions to GitHub Pages." src="./assets/cards/mutmainnah-light.svg" width="49%"></picture></a>
+  <a href="https://github.com/hanihashmi786/VoiceDrop"><picture><source media="(prefers-color-scheme: dark)" srcset="./assets/cards/voicedrop-dark.svg"><img alt="VoiceDrop. Flask and PostgreSQL call-center QA app with three roles and 18 routes." src="./assets/cards/voicedrop-light.svg" width="49%"></picture></a>
 </p>
 
 <br>
 
-I'm a software engineer who works backend-first. Most of what I build has a **Python service** at its core — Django REST or Flask, PostgreSQL, JWT auth, file handling — and a **React or React Native** client on top. I studied Software Engineering at CUST Islamabad, where my final-year work was a deep-learning system that classifies brain MRI scans. Since then I've shipped web and mobile products for teams in Pakistan and Saudi Arabia, and I'm now pointing that backend experience at **LLM agents**: tool calling, retrieval, and the evaluation work that makes them dependable in production.
+## 🧰 Tech stack
+
+**Backend and APIs**<br>
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=FFD43B) ![Django](https://img.shields.io/badge/Django-092E20?style=for-the-badge&logo=django&logoColor=white) ![DRF](https://img.shields.io/badge/Django%20REST-A30000?style=for-the-badge&logo=django&logoColor=white) ![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white) ![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white) ![Express](https://img.shields.io/badge/Express-000000?style=for-the-badge&logo=express&logoColor=white) ![tRPC](https://img.shields.io/badge/tRPC-2596BE?style=for-the-badge&logo=trpc&logoColor=white)
+
+**AI and data science**<br>
+![TensorFlow](https://img.shields.io/badge/TensorFlow-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white) ![Keras](https://img.shields.io/badge/Keras-D00000?style=for-the-badge&logo=keras&logoColor=white) ![NumPy](https://img.shields.io/badge/NumPy-013243?style=for-the-badge&logo=numpy&logoColor=white) ![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=for-the-badge&logo=jupyter&logoColor=white)
+
+**Databases**<br>
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white) ![Redis](https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white) ![SQLite](https://img.shields.io/badge/SQLite-003B57?style=for-the-badge&logo=sqlite&logoColor=white) ![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white) ![Drizzle](https://img.shields.io/badge/Drizzle%20ORM-C5F74F?style=for-the-badge&logo=drizzle&logoColor=black) ![Firebase](https://img.shields.io/badge/Firebase-DD2C00?style=for-the-badge&logo=firebase&logoColor=white)
+
+**Frontend, mobile and desktop**<br>
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white) ![JavaScript](https://img.shields.io/badge/JavaScript-323330?style=for-the-badge&logo=javascript&logoColor=F7DF1E) ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![React Native](https://img.shields.io/badge/React%20Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB) ![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white) ![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white) ![Electron](https://img.shields.io/badge/Electron-47848F?style=for-the-badge&logo=electron&logoColor=white) ![Tailwind CSS](https://img.shields.io/badge/Tailwind-0F172A?style=for-the-badge&logo=tailwindcss&logoColor=38BDF8) ![Redux](https://img.shields.io/badge/Redux-764ABC?style=for-the-badge&logo=redux&logoColor=white)
+
+**DevOps and tooling**<br>
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=git&logoColor=white) ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-2088FF?style=for-the-badge&logo=githubactions&logoColor=white) ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white) ![Nginx](https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white) ![Gunicorn](https://img.shields.io/badge/Gunicorn-499848?style=for-the-badge&logo=gunicorn&logoColor=white) ![Linux](https://img.shields.io/badge/Linux-FCC624?style=for-the-badge&logo=linux&logoColor=black)
 
 <br>
 
-## Selected work
+## 📊 GitHub activity
 
-#### [Taskio](https://github.com/hanihashmi786/Taskio) &nbsp;<sub>Django REST Framework · PostgreSQL · React 19 · Vite</sub>
-Full-stack Kanban workspace. The API models boards, lists, cards, checklists, labels, comments, attachments, board membership and notifications, behind JWT authentication. The React client adds drag-and-drop with dnd-kit, a rich-text card editor, and custom board backgrounds. Configured for production with environment-based settings, `DATABASE_URL`, Gunicorn and WhiteNoise.
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=hanihashmi786&background=0B1220&border=22304A&stroke=22304A&ring=2DD4BF&fire=F5B544&currStreakNum=E6EDF7&sideNums=E6EDF7&currStreakLabel=2DD4BF&sideLabels=8B9BB4&dates=8B9BB4">
+    <img alt="GitHub contribution streak for hanihashmi786" src="https://streak-stats.demolab.com/?user=hanihashmi786&background=FFFFFF&border=DCE3EC&stroke=DCE3EC&ring=0F766E&fire=B45309&currStreakNum=0F172A&sideNums=0F172A&currStreakLabel=0F766E&sideLabels=516079&dates=516079" width="100%">
+  </picture>
+</p>
 
-#### [Brain Tumor Detection](https://github.com/hanihashmi786/Brain-Tumor-Detection) &nbsp;<sub>TensorFlow / Keras · Flask · Firebase Auth</sub>
-My final-year project: four classifiers trained on brain MRI scans across four classes (glioma, meningioma, pituitary, no tumor) — a custom CNN plus transfer learning on VGG16, InceptionV3 and ResNet. ResNet reached 99.1% validation accuracy in the training logs. A Flask app serves all four models so their predictions can be compared side by side.
-
-#### [mutmainnah-content](https://github.com/hanihashmi786/mutmainnah-content) &nbsp;<sub>Node.js · GitHub Actions · GitHub Pages</sub>
-The content pipeline behind a mobile app. Plain-text files written in Arabic and Urdu go through a tested parser and are published as a JSON feed. CI runs the parser tests and checks every file before deploying, so a bad edit can't reach users.
-
-<details>
-<summary><b>Also built</b></summary>
-<br>
-
-- **[VoiceDrop](https://github.com/hanihashmi786/VoiceDrop)**: a Flask + PostgreSQL tool for call-center QA. Agents upload call recordings, entries are sent to QA review, and admins manage teams and users through role-based access.
-- **[Dial-Loom](https://github.com/hanihashmi786/Dial-Loom)**: a UI prototype for a React Native softphone, with navigation, Redux-persisted auth, and dialer, SMS and number screens.
-- **[Rujo-illalah](https://rujoilallah-app.vercel.app)**: an Islamic mobile app built in React Native as freelance work. The repository is private.
-
-</details>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=hanihashmi786&bg_color=0B1220&color=8B9BB4&title_color=E6EDF7&line=2DD4BF&point=F5B544&area=true&area_color=2DD4BF&hide_border=true&custom_title=Contribution%20activity">
+    <img alt="Contribution activity graph for hanihashmi786" src="https://github-readme-activity-graph.vercel.app/graph?username=hanihashmi786&bg_color=FFFFFF&color=516079&title_color=0F172A&line=0F766E&point=B45309&area=true&area_color=0F766E&hide_border=true&custom_title=Contribution%20activity" width="100%">
+  </picture>
+</p>
 
 <br>
 
-## Toolbox
+## 💼 Experience
 
 <table>
-  <tr>
-    <td width="150"><b>Backend</b></td>
-    <td>Python · Django · Django REST Framework · Flask · Node.js · Express · REST APIs · JWT</td>
-  </tr>
-  <tr>
-    <td><b>AI / ML</b></td>
-    <td>TensorFlow · Keras · CNNs &amp; transfer learning · NumPy · Jupyter</td>
-  </tr>
-  <tr>
-    <td><b>Data</b></td>
-    <td>PostgreSQL · SQLite · MongoDB · Redis · Firebase</td>
-  </tr>
-  <tr>
-    <td><b>Frontend &amp; mobile</b></td>
-    <td>React · React Native · Expo · TypeScript · Next.js · Tailwind CSS · Redux Toolkit · Zustand</td>
-  </tr>
-  <tr>
-    <td><b>Delivery</b></td>
-    <td>Git · GitHub Actions · Gunicorn · Nginx · Vercel · Linux</td>
-  </tr>
-</table>
-
-<br>
-
-## Experience
-
-<table>
-  <tr><td width="150"><b>Freelance</b></td><td>Full-stack developer</td><td>Oct 2025 – present · Riyadh</td></tr>
+  <tr><td width="170"><b>Freelance</b></td><td>Full-stack developer</td><td>Oct 2025 – present · Riyadh</td></tr>
   <tr><td><b>Mars BPO</b></td><td>Full-stack developer</td><td>Jul 2024 – Aug 2025 · Islamabad</td></tr>
   <tr><td><b>Focal Technologies</b></td><td>Full-stack developer</td><td>Sep 2023 – Jul 2024 · Islamabad</td></tr>
   <tr><td><b>SOFTOO</b></td><td>JavaScript developer intern</td><td>Jul 2023 – Sep 2023 · Islamabad</td></tr>
@@ -80,10 +96,10 @@ The content pipeline behind a mobile app. Plain-text files written in Arabic and
 
 <br>
 
-## Currently
+## 🔭 Currently
 
 Going deeper on **agentic AI in Python**: tool calling, structured outputs, retrieval, and how to test agents so they behave predictably in a real backend.
 
 <br>
 
-<p align="center"><sub>Built by hand: the banner is a self-hosted SVG generated from <a href="./tools/make_banner.py">one script</a>, with no third-party widgets.</sub></p>
+<p align="center"><sub>The banner and project cards are self-hosted SVGs generated by the scripts in <a href="./tools">/tools</a>. Every number comes from the project's own code.</sub></p>
