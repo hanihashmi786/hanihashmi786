@@ -2,7 +2,7 @@
 
     python tools/make_banner.py            (run from the repo root)
 
-Dracula palette, Poppins + JetBrains Mono, a `hani.ts` editor window and a
+Gold theme, Poppins + JetBrains Mono, a `hani.ts` editor window and a
 VS Code-style status bar: the same identity as the portfolio.
 
 Images in a GitHub README can't load web fonts, so the two fonts are embedded
@@ -25,11 +25,14 @@ ROOT = Path(__file__).resolve().parent.parent
 OUT = ROOT / "assets" / "banner.svg"
 FONT_CACHE = Path(__file__).resolve().parent / "fonts"
 
-# Dracula, as used on the portfolio
-BG, PANEL, LINE, CURRENT = "#282A36", "#1E1F29", "#343746", "#44475A"
-FG, MUTED, COMMENT = "#F8F8F2", "#A3A8C3", "#6272A4"
-PURPLE, PINK, CYAN, GREEN, YELLOW, ORANGE, RED = (
-    "#BD93F9", "#FF79C6", "#8BE9FD", "#50FA7B", "#F1FA8C", "#FFB86C", "#FF5555")
+# The portfolio's "Gold" theme (hanihashmi.vercel.app, default scheme)
+BG, PANEL, LINE, CURRENT = "#121212", "#171717", "#1E1E1F", "#383838"
+STATUS_BG, LINENO = "#0E0E0E", "#494C51"
+FG, MUTED, COMMENT = "#FFFFFF", "#9CA3AF", "#7A7F88"
+GOLD, OK = "#FFDB70", "#22C55E"
+KEYWORD, PROP, STRING, BOOL = "#C084FC", "#60A5FA", "#86EFAC", "#F97316"
+TL_RED, TL_YELLOW, TL_GREEN = "#FF5F57", "#FEBC2E", "#28C840"
+PURPLE = GOLD  # accent slot
 
 W, H = 1280, 440
 MONO_ADV = 0.6  # JetBrains Mono advance width, in em
@@ -44,7 +47,7 @@ TYPED = [
 TAGLINE = ("Python at the core. ", ("AI", PURPLE), " at the edge. ", ("Products that ship.", FG))
 
 # hani.ts, as (text, colour) tokens per line
-K, S, P, C, N, T = PINK, YELLOW, CYAN, COMMENT, FG, ORANGE
+K, S, P, C, N, T = KEYWORD, STRING, PROP, COMMENT, FG, BOOL
 CODE = [
     [("const ", K), ("hani", N), (" = {", N)],
     [("  role", P), (": ", N), ("'Product Developer'", S), (",", N)],
@@ -151,13 +154,13 @@ def editor(x, y, w, h):
         f'<path d="M{x} {y + 14} a14 14 0 0 1 14 -14 h{w - 28} a14 14 0 0 1 14 14 v28 h-{w} z" fill="{BG}"/>',
         f'<line x1="{x}" y1="{y + 42}" x2="{x + w}" y2="{y + 42}" stroke="{CURRENT}"/>',
     ]
-    for i, col in enumerate((RED, ORANGE, GREEN)):
+    for i, col in enumerate((TL_RED, TL_YELLOW, TL_GREEN)):
         out.append(f'<circle cx="{x + 22 + i * 18}" cy="{y + 21}" r="6" fill="{col}"/>')
     out.append(f'<text x="{x + 88}" y="{y + 26}" font-family="JetBrains Mono" font-size="13" fill="{MUTED}">hani.ts</text>')
     out.append(f'<text x="{x + w - 18}" y="{y + 26}" text-anchor="end" font-family="JetBrains Mono" font-size="12" fill="{COMMENT}">TypeScript</text>')
     ty = y + 42 + 30
     for n, line in enumerate(CODE, start=1):
-        out.append(f'<text x="{x + 34}" y="{ty}" text-anchor="end" font-family="JetBrains Mono" font-size="{size - 2}" fill="{COMMENT}">{n}</text>')
+        out.append(f'<text x="{x + 34}" y="{ty}" text-anchor="end" font-family="JetBrains Mono" font-size="{size - 2}" fill="{LINENO}">{n}</text>')
         if line:
             spans = "".join(f'<tspan fill="{c}">{escape(t)}</tspan>' for t, c in line)
             out.append(f'<text x="{x + 50}" y="{ty}" font-family="JetBrains Mono" font-size="{size}" xml:space="preserve">{spans}</text>')
@@ -168,10 +171,10 @@ def editor(x, y, w, h):
 def status_bar():
     y = H - 30
     return "\n  ".join([
-        f'<path d="M0 {y} H{W} V{H - 16} a16 16 0 0 1 -16 16 H16 a16 16 0 0 1 -16 -16 z" fill="{PANEL}"/>',
+        f'<path d="M0 {y} H{W} V{H - 16} a16 16 0 0 1 -16 16 H16 a16 16 0 0 1 -16 -16 z" fill="{STATUS_BG}"/>',
         f'<line x1="0" y1="{y}" x2="{W}" y2="{y}" stroke="{CURRENT}"/>',
         f'<text x="22" y="{y + 20}" font-family="JetBrains Mono" font-size="13" fill="{PURPLE}">⎇ main</text>',
-        f'<circle cx="104" cy="{y + 15}" r="4" fill="{GREEN}"><animate attributeName="opacity" dur="2.4s" repeatCount="indefinite" values="1;.35;1"/></circle>',
+        f'<circle cx="104" cy="{y + 15}" r="4" fill="{OK}"><animate attributeName="opacity" dur="2.4s" repeatCount="indefinite" values="1;.35;1"/></circle>',
         f'<text x="114" y="{y + 20}" font-family="JetBrains Mono" font-size="13" fill="{MUTED}">open to work</text>',
         f'<text x="{W - 22}" y="{y + 20}" text-anchor="end" font-family="JetBrains Mono" font-size="13" fill="{COMMENT}" xml:space="preserve">Riyadh, Saudi Arabia   UTF-8   EN</text>',
     ])
@@ -192,8 +195,8 @@ def svg():
   <defs>
     <style>{styles}</style>
     <radialGradient id="glow" cx=".78" cy=".42" r=".55">
-      <stop offset="0" stop-color="{PURPLE}" stop-opacity=".16"/>
-      <stop offset="1" stop-color="{PURPLE}" stop-opacity="0"/>
+      <stop offset="0" stop-color="{GOLD}" stop-opacity=".10"/>
+      <stop offset="1" stop-color="{GOLD}" stop-opacity="0"/>
     </radialGradient>
     <pattern id="grid" width="32" height="32" patternUnits="userSpaceOnUse">
       <path d="M32 0H0V32" fill="none" stroke="{LINE}" stroke-width=".6"/>

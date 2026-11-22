@@ -1,9 +1,9 @@
 <a href="https://hanihashmi.vercel.app"><img alt="Hani Hashmi — Software Engineer and Product Developer in Riyadh. Python at the core. AI at the edge. Products that ship." src="./assets/banner.svg" width="100%"></a>
 
 <p align="center">
-  <a href="https://hanihashmi.vercel.app"><img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-BD93F9?style=for-the-badge&logo=vercel&logoColor=282A36"></a>
+  <a href="https://hanihashmi.vercel.app"><img alt="Portfolio" src="https://img.shields.io/badge/Portfolio-FFDB70?style=for-the-badge&logo=vercel&logoColor=121212"></a>
   <a href="https://linkedin.com/in/hanihashmi786"><img alt="LinkedIn" src="https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge"></a>
-  <img alt="Based in Riyadh, Saudi Arabia" src="https://img.shields.io/badge/Riyadh,%20KSA-282A36?style=for-the-badge&logo=googlemaps&logoColor=white">
+  <img alt="Based in Riyadh, Saudi Arabia" src="https://img.shields.io/badge/Riyadh,%20KSA-1E1E1F?style=for-the-badge&logo=googlemaps&logoColor=white">
 </p>
 
 ### 👨‍💻 About me
@@ -38,19 +38,9 @@ I build **backend-heavy products end to end**: Django and Flask APIs, the Postgr
 
 ## 📊 GitHub activity
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=hanihashmi786&background=0B1220&border=22304A&stroke=22304A&ring=2DD4BF&fire=F5B544&currStreakNum=E6EDF7&sideNums=E6EDF7&currStreakLabel=2DD4BF&sideLabels=8B9BB4&dates=8B9BB4">
-    <img alt="GitHub contribution streak for hanihashmi786" src="https://streak-stats.demolab.com/?user=hanihashmi786&background=FFFFFF&border=DCE3EC&stroke=DCE3EC&ring=0F766E&fire=B45309&currStreakNum=0F172A&sideNums=0F172A&currStreakLabel=0F766E&sideLabels=516079&dates=516079" width="100%">
-  </picture>
-</p>
+<img alt="GitHub stats for hanihashmi786: total contributions, current streak and longest streak." src="./assets/stats.svg" width="100%">
 
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=hanihashmi786&bg_color=0B1220&color=8B9BB4&title_color=E6EDF7&line=2DD4BF&point=F5B544&area=true&area_color=2DD4BF&hide_border=true&custom_title=Contribution%20activity">
-    <img alt="Contribution activity graph for hanihashmi786" src="https://github-readme-activity-graph.vercel.app/graph?username=hanihashmi786&bg_color=FFFFFF&color=516079&title_color=0F172A&line=0F766E&point=B45309&area=true&area_color=0F766E&hide_border=true&custom_title=Contribution%20activity" width="100%">
-  </picture>
-</p>
+<img alt="Contribution heatmap for the last year." src="./assets/heatmap.svg" width="100%">
 
 <br>
 
